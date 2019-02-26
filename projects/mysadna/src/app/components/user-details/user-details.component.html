@@ -1,0 +1,48 @@
+<div class="user-details" *ngIf="user">
+  <div class="media">
+    <div class="user-header">{{ user.getFirstName() }} {{ user.getLastName() }}</div>
+    <div class="user-container media-row-col">
+      <div class="user-label">
+        <div class="flex">
+          <img [src]="user.getUserImg()">
+          <div class="user-name">{{ user.getUserName() }}</div>
+          <div class="email">{{ user.getEmail() }}</div>
+          <div class="social-networks">
+            <a
+              href="https://github.com/hasadna/hasadna"
+              *ngFor="let socialNetwork of user.getSocialNetworkList()"
+            >
+              <img src="./assets/images/{{socialNetwork}}.svg">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="media-large-block"></div>
+      <div class="media-small-block"></div>
+      <div class="user-info media-100">
+        <div class="title">Projects:</div>
+        <div class="info-block">
+          <a
+            *ngFor="let project of userProjects"
+            [routerLink]="'/project-details/' + project.getProjectId()"
+          >{{ project.getProjectName() }}</a>
+        </div>
+
+        <div class="title">Skills:</div>
+        <div class="info-block">
+          {{ getSkills() }}
+        </div>
+
+        <div class="title">Contributions:</div>
+        <div class="info-block">
+          <div class="contribution" *ngFor="let contribution of user.getUserContributionList()">
+            <div class="contribution-message">{{ contribution.getContributionMessage() }}</div>
+            <div class="contribution-url"><a [href]="contribution.getContributionUrl()">
+              {{ contribution.getContributionUrl() }}
+            </a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

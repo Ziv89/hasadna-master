@@ -1,0 +1,8 @@
+<div class="projects media">
+  <div class="title">Projects</div>
+  <div class="project" *ngFor="let project of projects">
+    <a [routerLink]="'/project-details/' + project.getProjectId()">
+      {{project.getProjectName()}}
+    </a>
+  </div>
+</div>
